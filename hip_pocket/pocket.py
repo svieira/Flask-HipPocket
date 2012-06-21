@@ -16,18 +16,20 @@ class HipPocket(object):
     Alternately, because a flask is always better when you have something to carry it in."""
 
     def __init__(self, app=None, tasks=None):
-        """:param tasks: An iterable of callable objects. Each callable will be passed the app in turn.
+        """
         :param app: A `flask.Flask` instance.  If none is provided the :meth: init_app  method may be called later
-        to initialize the `HipPocket` instance."""
+        to initialize the `HipPocket` instance.
+        :param tasks: An iterable of callable objects. Each callable will be passed the app in turn.
+        """
 
-        self._tasks = tasks if tasks is not None else [autoload, setup_errors]
+        self.tasks = tasks if tasks is not None else [autoload, setup_errors]
         if app is not None:
             self.init_app(app)
 
     def init_app(self, app):
         """Runs each of the tasks added via the `task` decorator."""
 
-        for task in self._tasks:
+        for task in self.tasks:
             task(app)
 
     def task(self, func, *args, **kwargs):
@@ -77,12 +79,12 @@ class HipPocket(object):
         if not callable(func) or len(args) > 0 or len(kwargs) > 0:
             def wrapper(func):
                 task = decorator(func)
-                self._tasks.append(task)
+                self.tasks.append(task)
                 return task
             return wrapper
         else:
             task = decorator(func)
-            self._tasks.append(task)
+            self.tasks.append(task)
             return task
 
 
