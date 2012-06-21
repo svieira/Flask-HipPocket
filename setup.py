@@ -1,5 +1,5 @@
 from os import path
-from setuptools import setup
+from setuptools import setup, find_packages
 
 from hip_pocket.constants import VERSION
 
@@ -13,14 +13,14 @@ setup(
     description="A wrapper around Flask to ease the development of larger applications",
     long_description=load("README.rst"),
     version=VERSION,
-    packages=["hip_pocket"],
+    packages=find_packages(),
     url="https://github.com/svieira/HipPocket",
     author="Sean Vieira",
     author_email="vieira.sean+hip_pocket@gmail.com",
     install_requires=[
-        "Flask>=.7",
+        "Flask>=0.7",
         "Jinja2>=2.4",
-        "Werkzeug>=.7"
+        "Werkzeug>=0.7"
     ],
     platforms="any",
     classifiers=[
@@ -33,5 +33,7 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
         "Topic :: Software Development :: Libraries :: Python Modules"
     ],
+    include_package_data=True,
+    test_suite="hip_pocket.tests.suite",
     zip_safe=False
     )
