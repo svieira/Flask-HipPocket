@@ -128,7 +128,7 @@ class Mapper(object):
         self.url_defaults = url_defaults
         self.endpoint_base_name = endpoint_base_name \
                                     if endpoint_base_name is not None \
-                                    else blueprint.__name__.rsplit(u".", 1)[0]
+                                    else blueprint.import_name.rsplit(u".", 1)[0]
 
     def add_url_rule(self, url, endpoint, *url_args, **url_kwargs):
         url_defaults = self.url_defaults.copy()
