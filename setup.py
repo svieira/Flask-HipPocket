@@ -13,7 +13,7 @@ setup(
     description="A wrapper around Flask to ease the development of larger applications",
     long_description=load("README.rst"),
     version=VERSION,
-    packages=["hip_pocket"],
+    packages=["hip_pocket", "hip_pocket.tests"],
     url="https://github.com/svieira/HipPocket",
     author="Sean Vieira",
     author_email="vieira.sean+hip_pocket@gmail.com",
@@ -22,6 +22,7 @@ setup(
         "Jinja2>=2.4",
         "Werkzeug>=.7"
     ],
+    platforms="any",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Web Environment",
