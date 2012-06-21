@@ -1,7 +1,6 @@
 from functools import wraps
 from werkzeug import import_string, cached_property
 
-from .constants import VERSION
 from .tasks import autoload, setup_errors
 
 __all__ = ["HipPocket", "LateLoader", "Mapper"]
@@ -15,8 +14,6 @@ class HipPocket(object):
     do it with a wrapper.
 
     Alternately, because a flask is always better when you have something to carry it in."""
-
-    version = VERSION
 
     def __init__(self, app=None, tasks=None):
         """:param tasks: An iterable of callable objects. Each callable will be passed the app in turn.
