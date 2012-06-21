@@ -1,5 +1,5 @@
 __all__ = ["__version__", "VERSION"]
-__version__ = (0, 1, 0, "alpha")
+__version__ = (0, 1, 1, "alpha")
 
 maj, min, patch = [unicode(v) for v in __version__[:3]]
 ver = u"{maj}.{min}.{patch}".format(maj=maj, min=min, patch=patch)
