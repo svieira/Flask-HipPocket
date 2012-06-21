@@ -128,13 +128,17 @@ class Mapper(object):
         self.url_defaults = url_defaults
         self.endpoint_base_name = endpoint_base_name \
                                     if endpoint_base_name is not None \
-                                    else blueprint.import_name.rsplit(u".", 1)[0]
+                                    else blueprint.import_name
 
-    def add_url_rule(self, url, endpoint, *url_args, **url_kwargs):
+    def add_url_rule(self, url, import_name, **url_kwargs):
+
+        endpoint = u".".join([self.endpoint_base_name, import_name])
+        view = LateLoader(endpoint)
+
         url_defaults = self.url_defaults.copy()
+        # Allow overriding of endpoints for `url_for`.
+        url_defaults["endpoint"] = endpoint
         url_defaults.update(**url_kwargs)
         url_kwargs = url_defaults
 
-        endpoint = u".".join([self.endpoint_base_name, endpoint])
-
-        self.blueprint.add_url_rule(url, endpoint, *url_args, **url_kwargs)
+        self.blueprint.add_url_rule(url, view_func=view, **url_kwargs)
