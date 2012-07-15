@@ -93,9 +93,9 @@ def setup_path():
 
 
 def suite():
-    """A testsuite that has all the Flask tests.  You can use this
-    function to integrate the Flask tests into your own testsuite
-    in case you want to test that monkeypatches to Flask do not
+    """A testsuite that has all the HipPocket tests.  You can use this
+    function to integrate the HipPocket tests into your own testsuite
+    in case you want to test that monkeypatches to HipPocket do not
     break it.
     """
     setup_path()

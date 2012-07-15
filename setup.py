@@ -6,7 +6,11 @@ from hip_pocket.constants import VERSION
 
 def load(file_name):
     here = path.dirname(path.abspath(__file__))
-    return open(path.join(here, file_name), "r").read()
+    try:
+        with open(path.join(here, file_name), "r") as fp:
+            return fp.read()
+    except IOError:
+        return u""
 
 setup(
     name="HipPocket",

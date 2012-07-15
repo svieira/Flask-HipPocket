@@ -9,16 +9,21 @@ __all__ = ["HipPocket", "LateLoader", "Mapper"]
 class HipPocket(object):
     """A wrapper around Flask to help make managing complex applications easier.
 
-    Why not use Flask's `flask.Flask.before_first_request` decorator?  Because sometimes
-    you need a reference to the current application to do your setup - and it's easier to
-    do it with a wrapper.
+    Why not use Flask's `flask.Flask.before_first_request` decorator? Because functions
+    registered via that decorator are run on the first request (as opposed to *before* it).
 
-    Alternately, because a flask is always better when you have something to carry it in."""
+    This extension fills the gap between `flask.ext.script` (Flask-Script) and
+    `flask.Flask.before_first_request`.  It is for attaching functionality that needs
+    to be run on the application itself (as opposed to Flask-Script which is used to
+    run jobs *with* the application) but which might be too intensive to run in response
+    to the first request.
+
+    Alternately; because a flask is always better when you have something to carry it in."""
 
     def __init__(self, app=None, tasks=None):
         """
         :param app: A `flask.Flask` instance.  If none is provided the :meth: init_app  method may be called later
-        to initialize the `HipPocket` instance.
+        to initialize the `Flask` instance.
         :param tasks: An iterable of callable objects. Each callable will be passed the app in turn.
         """
 

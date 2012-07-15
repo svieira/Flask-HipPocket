@@ -1,7 +1,10 @@
 #!/usr/bin/env python
-import os, sys
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from hip_pocket.tests import main
+if __name__ == "__main__":
+    from os.path import abspath, dirname
+    from sys import path
+    path.insert(0, abspath(dirname(__file__)))
 
-main()
+    from hip_pocket.tests import main
+
+    main()

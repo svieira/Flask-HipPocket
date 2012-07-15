@@ -38,11 +38,14 @@ It depends on your requirements. Some things to consider:
 
 * HipPocket is licenced under the MIT licence so it's free to use for almost any purpose.
 * It is currently pre-alpha software.
-* It has no tests (yet).
+* It has limited tests (currently).
 * It has no documentation (aside from its docstrings).
 * Its API is not stable.
-* It is actively accepting patches and feedback.
+* It is actively accepting `patches`_ and `feedback`_ at its `GitHub repository`_.
 
 
 .. _Flask: http://flask.pocoo.org
 .. _Flask's documentation: http://flask.pocoo.org/docs/patterns/lazyloading/
+.. _GitHub repository: https://github.com/svieira/HipPocket
+.. _patches: https://github.com/svieira/HipPocket/pulls
+.. _feedback: https://github.com/svieira/HipPocket/issues
