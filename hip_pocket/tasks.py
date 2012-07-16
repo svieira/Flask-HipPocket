@@ -25,7 +25,7 @@ def autoload(app, apps_package="apps", module_name="routes", blueprint_name="rou
 
     package_paths = package_code.__path__
 
-    package_paths = [path.join(app.config["ROOT_PATH"], p) for p in package_paths]
+    package_paths = [path.join(app.root_path, p) for p in package_paths]
     apps_package = apps_package + u"." if not apps_package.endswith(".") else apps_package
 
     if on_error is None:
@@ -34,7 +34,10 @@ def autoload(app, apps_package="apps", module_name="routes", blueprint_name="rou
     import_template = "{base}.{module}.{symbol}"
 
     #: Autoloaded apps must be Python packages
-    for sub_app_name in walk_packages(path=package_paths, prefix=apps_package, onerror=on_error):
+    for _, sub_app_name, is_pkg in walk_packages(path=package_paths, prefix=apps_package, onerror=on_error):
+
+        if not is_pkg:
+            continue
 
         _to_import = import_template.format(base=sub_app_name, \
                                                 module=module_name, \

@@ -128,21 +128,19 @@ class Mapper(object):
     when the URL `/my-blueprint/` is hit for the first time.
     This import will be cached in order to ensure that
     subsequent requests to this url will **not** result in additional imports."""
-    def __init__(self, blueprint, endpoint_base_name=None, **url_defaults):
+    def __init__(self, blueprint, base_import_name=None, **url_defaults):
         self.blueprint = blueprint
         self.url_defaults = url_defaults
-        self.endpoint_base_name = endpoint_base_name \
-                                    if endpoint_base_name is not None \
+        self.base_import_name = base_import_name \
+                                    if base_import_name is not None \
                                     else blueprint.import_name
 
     def add_url_rule(self, url, import_name, **url_kwargs):
 
-        endpoint = u".".join([self.endpoint_base_name, import_name])
-        view = LateLoader(endpoint)
+        import_path = u".".join([self.base_import_name, import_name])
+        view = LateLoader(import_path)
 
         url_defaults = self.url_defaults.copy()
-        # Allow overriding of endpoints for `url_for`.
-        url_defaults["endpoint"] = endpoint
         url_defaults.update(**url_kwargs)
         url_kwargs = url_defaults
 
