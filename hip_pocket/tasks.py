@@ -1,4 +1,5 @@
 from flask import Blueprint, Markup, request, render_template
+from itertools import chain
 from os import path
 from pkgutil import walk_packages
 from werkzeug.utils import import_string
@@ -26,23 +27,28 @@ def autoload(app, apps_package="apps", module_name="routes", blueprint_name="rou
     package_paths = package_code.__path__
 
     package_paths = [path.join(app.root_path, p) for p in package_paths]
+    root = apps_package
     apps_package = apps_package + u"." if not apps_package.endswith(".") else apps_package
 
     if on_error is None:
         on_error = lambda name: app.logger.warn("Unable to import {name}.".format(name=name))
 
-    import_template = "{base}.{module}.{symbol}"
+    _to_import = "{base}.{module}.{symbol}"
+    import_template = lambda base: _to_import.format(base=base,
+                                                        module=module_name,
+                                                        symbol=blueprint_name)
 
     #: Autoloaded apps must be Python packages
-    for _, sub_app_name, is_pkg in walk_packages(path=package_paths, prefix=apps_package, onerror=on_error):
+    #: The root of the package is also inspected for a routing file
+    package_contents = chain([[None, root, True]],
+                                walk_packages(path=package_paths, prefix=apps_package, onerror=on_error))
+    for _, sub_app_name, is_pkg in package_contents:
 
         if not is_pkg:
             continue
 
-        _to_import = import_template.format(base=sub_app_name, \
-                                                module=module_name, \
-                                                symbol=blueprint_name)
-        sub_app = import_string(_to_import)
+        sub_app_import_path = import_template(base=sub_app_name)
+        sub_app = import_string(sub_app_import_path)
 
         if isinstance(sub_app, Blueprint):
             app.register_blueprint(sub_app)

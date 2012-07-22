@@ -12,7 +12,7 @@ class MapperAppTests(unittest.TestCase):
         self.mapper = Mapper(self.app)
 
     def test_endpoint_setup(self):
-        self.assertEqual(self.mapper.endpoint_base_name, "mapper")
+        self.assertEqual(self.mapper.base_import_name, "mapper")
 
     def test_mapping_creates_route(self):
         self.mapper.add_url_rule("/", "mapper_index")
@@ -20,11 +20,11 @@ class MapperAppTests(unittest.TestCase):
         # Flask adds the static route for us automatically
         self.assertEqual(len(routes), 2)
 
-    def test_import_prefixed(self):
+    def test_import_not_prefixed(self):
         self.mapper.add_url_rule("/", "mapper_index")
         routes = list(self.app.url_map.iter_rules())
         our_route = [route for route in routes if route.rule == "/"][0]
-        self.assertEqual(our_route.endpoint, "mapper.mapper_index")
+        self.assertEqual(our_route.endpoint, "mapper_index")
 
     def test_import_resolves(self):
         self.mapper.add_url_rule("/", "mapper_index")
