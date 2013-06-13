@@ -2,11 +2,18 @@
 HipPocket
 ~~~~~~~~~
 
-    Circular imports have you down? Looking for a better way to build mid-to-large scale systems? You might need to pop that flask into your hip pocket and take a brisk walk to clear your head.
-
 .. image:: https://drone.io/github.com/svieira/HipPocket/status.png
         :alt: Build Status
         :target: https://drone.io/github.com/svieira/HipPocket/latest
+
+.. image:: https://codeq.io/github/svieira/HipPocket/badges/master.png
+        :alt: Code Quality
+        :target: https://codeq.io/github/svieira/HipPocket/branches/master
+        
+----
+
+    Circular imports have you down? Looking for a better way to build mid-to-large scale systems? You might need to pop that flask into your hip pocket and take a brisk walk to clear your head.
+
 
 What is it?
 -----------
