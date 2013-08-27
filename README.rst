@@ -9,10 +9,6 @@ HipPocket
 .. image:: https://travis-ci.org/svieira/HipPocket.png?branch=master
         :target: https://travis-ci.org/svieira/HipPocket
         :alt: Build Status (via Travis-CI)
-
-.. image:: https://codeq.io/github/svieira/HipPocket/badges/master.png
-        :alt: Code Quality (via CodeQ.io)
-        :target: https://codeq.io/github/svieira/HipPocket/branches/master
         
 ----
 
