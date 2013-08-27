@@ -1,8 +1,6 @@
 from os import path
 from setuptools import setup, find_packages
 
-from hip_pocket.constants import VERSION
-
 
 def load(file_name):
     here = path.dirname(path.abspath(__file__))
@@ -16,7 +14,7 @@ setup(
     name="HipPocket",
     description="A wrapper around Flask to ease the development of larger applications",
     long_description=load("README.rst"),
-    version=VERSION,
+    version="0.1.2a",
     packages=find_packages(),
     url="https://github.com/svieira/HipPocket",
     author="Sean Vieira",
