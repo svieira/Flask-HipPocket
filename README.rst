@@ -3,11 +3,15 @@ HipPocket
 ~~~~~~~~~
 
 .. image:: https://drone.io/github.com/svieira/HipPocket/status.png
-        :alt: Build Status
+        :alt: Build Status (via Drone.io)
         :target: https://drone.io/github.com/svieira/HipPocket/latest
+        
+.. image:: https://travis-ci.org/svieira/HipPocket.png?branch=master
+        :target: https://travis-ci.org/svieira/HipPocket
+        :alt: Build Status (via Travis-CI)
 
 .. image:: https://codeq.io/github/svieira/HipPocket/badges/master.png
-        :alt: Code Quality
+        :alt: Code Quality (via CodeQ.io)
         :target: https://codeq.io/github/svieira/HipPocket/branches/master
         
 ----
