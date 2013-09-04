@@ -1,7 +1,7 @@
 import unittest
 
 from flask import Flask
-from hip_pocket import Mapper
+from flask.ext.hippocket import Mapper
 
 
 class MapperAppTests(unittest.TestCase):

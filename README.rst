@@ -18,7 +18,7 @@ HipPocket
 What is it?
 -----------
 
-HipPocket is a collection of convenience wrappers for the already intensely useful Flask_ web framework.
+Flask-HipPocket is a collection of convenience wrappers for the already intensely useful Flask_ web framework.
 
 At its core are two classes:
 

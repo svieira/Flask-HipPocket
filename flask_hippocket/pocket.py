@@ -3,17 +3,17 @@ from werkzeug import import_string, cached_property
 
 from .tasks import autoload, setup_errors
 
-__all__ = ["HipPocket", "LateLoader", "Mapper"]
+__all__ = ("HipPocket", "LateLoader", "Mapper")
 
 
 class HipPocket(object):
     """A wrapper around Flask to help make managing complex applications easier.
 
-    Why not use Flask's `flask.Flask.before_first_request` decorator? Because functions
+    Why not use Flask's ``flask.Flask.before_first_request`` decorator? Because functions
     registered via that decorator are run on the first request (as opposed to *before* it).
 
-    This extension fills the gap between `flask.ext.script` (Flask-Script) and
-    `flask.Flask.before_first_request`.  It is for attaching functionality that needs
+    This extension fills the gap between ``flask.ext.script`` (Flask-Script) and
+    ``flask.Flask.before_first_request``.  It is for attaching functionality that needs
     to be run on the application itself (as opposed to Flask-Script which is used to
     run jobs *with* the application) but which might be too intensive to run in response
     to the first request.
@@ -63,7 +63,7 @@ class HipPocket(object):
         See `tasks.py` for some examples tasks.
 
         NOTE: The task decorator does not handle single callable arguments. If you need
-        to pass single callables include a nonsense keyword argument.
+        to pass single callables pass it as a keyword argument.
 
             # This will fail
             @hip_pocket.task(lambda x: x*2)
@@ -71,8 +71,8 @@ class HipPocket(object):
                 # Have the manager schedule something.
 
             # This will work as anticipated
-            @hip_pocket.task(lambda x: x**2, doubles=2):
-            def add_pocket_squares(app, butler, **kwargs):
+            @hip_pocket.task(butler=lambda garment: garment.add_pocket_squares()):
+            def add_pocket_squares(app, butler):
                 # Add pocket squares to the appropriate garments.
         """
         def decorator(f):
@@ -132,8 +132,8 @@ class Mapper(object):
         self.blueprint = blueprint
         self.url_defaults = url_defaults
         self.base_import_name = base_import_name \
-                                    if base_import_name is not None \
-                                    else blueprint.import_name
+            if base_import_name is not None \
+            else blueprint.import_name
 
     def add_url_rule(self, url, import_name, **url_kwargs):
 

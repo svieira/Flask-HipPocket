@@ -93,9 +93,9 @@ def setup_path():
 
 
 def suite():
-    """A testsuite that has all the HipPocket tests.  You can use this
-    function to integrate the HipPocket tests into your own testsuite
-    in case you want to test that monkeypatches to HipPocket do not
+    """A testsuite that has all the Flask-HipPocket tests.  You can use this
+    function to integrate the Flask-HipPocket tests into your own testsuite
+    in case you want to test that monkeypatches to Flask-HipPocket do not
     break it.
     """
     setup_path()
@@ -109,8 +109,8 @@ def main():
     """Runs the testsuite as command line application."""
     try:
         unittest.main(testLoader=BetterLoader(), defaultTest='suite')
-    except Exception, e:
-        print 'Error: %s' % e
+    except Exception as e:
+        print('Error: %s' % e)
 
 
 if __name__ == "__main__":

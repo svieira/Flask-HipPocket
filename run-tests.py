@@ -5,6 +5,6 @@ if __name__ == "__main__":
     from sys import path
     path.insert(0, abspath(dirname(__file__)))
 
-    from hip_pocket.tests import main
+    from flask_hippocket.tests import main
 
     main()

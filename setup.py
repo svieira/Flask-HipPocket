@@ -11,12 +11,12 @@ def load(file_name):
         return u""
 
 setup(
-    name="HipPocket",
+    name="Flask-HipPocket",
     description="A wrapper around Flask to ease the development of larger applications",
     long_description=load("README.rst"),
-    version="0.1.2a",
+    version="0.2.0b",
     packages=find_packages(),
-    url="https://github.com/svieira/HipPocket",
+    url="https://github.com/svieira/Flask-HipPocket",
     author="Sean Vieira",
     author_email="vieira.sean+hip_pocket@gmail.com",
     install_requires=[
@@ -36,6 +36,6 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules"
     ],
     include_package_data=True,
-    test_suite="hip_pocket.tests.suite",
+    test_suite="flask_hippocket.tests.suite",
     zip_safe=False
-    )
+)
