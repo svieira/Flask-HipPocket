@@ -6,8 +6,8 @@ HipPocket
         :alt: Build Status (via Drone.io)
         :target: https://drone.io/github.com/svieira/HipPocket/latest
         
-.. image:: https://travis-ci.org/svieira/HipPocket.png?branch=master
-        :target: https://travis-ci.org/svieira/HipPocket
+.. image:: https://travis-ci.org/svieira/Flask-HipPocket.png?branch=master
+        :target: https://travis-ci.org/svieira/Flask-HipPocket
         :alt: Build Status (via Travis-CI)
         
 ----
