@@ -73,21 +73,21 @@ class HipPocket(object):
 
             hip_pocket.init_app(app)
 
-        .. seealso:: :mod:`tasks` 
-
         .. note::
             The task decorator does not handle single callable arguments. If you need
-            to pass single callables pass it as a keyword argument::
+            to pass single callables pass it as a keyword argument.
 
-                # This will fail
-                @hip_pocket.task(lambda x: x*2)
-                def schedule_doubles(app, manager):
-                    # Have the manager schedule something.
+        An example::
 
-                # This will work as anticipated
-                @hip_pocket.task(butler=lambda garment: garment.add_pocket_squares()):
-                def add_pocket_squares(app, butler):
-                    # Add pocket squares to the appropriate garments.
+            # This will fail
+            @hip_pocket.task(lambda x: x*2)
+            def schedule_doubles(app, doubler):
+                # Have the manager schedule something.
+
+            # This will work as anticipated
+            @hip_pocket.task(butler=lambda garment: garment.add_pocket_squares())
+            def add_pocket_squares(app, butler):
+                # Add pocket squares to the appropriate garments.
         """
         def decorator(f):
             @wraps(f)
@@ -112,7 +112,7 @@ class LateLoader(object):
     rather than on application initialization.  This speeds up application load times
     and keeps resource requirements low (since you don't load code until you need it).
 
-    Taken directly from the example in http://flask.pocoo.org/docs/patterns/lazyloading/"""
+    Taken directly from the example in `Flask's docs <http://flask.pocoo.org/docs/patterns/lazyloading/>`__"""
     def __init__(self, import_name):
         self.__module__, self.__name__ = import_name.rsplit(u".", 1)
         self.import_name = import_name
@@ -126,7 +126,7 @@ class LateLoader(object):
 
 
 class Mapper(object):
-    """Provides a convenience wrapper around :py:class:`LateLoader`.
+    """Provides a convenience wrapper around :class:`~flask.ext.hippocket.pocket.LateLoader`.
 
     It is designed to be used as follows::
 

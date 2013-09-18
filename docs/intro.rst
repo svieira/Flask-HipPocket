@@ -46,16 +46,25 @@ It depends on your requirements. Some things to consider:
 * It is currently alpha software.
 * It is licenced under the MIT licence. 
 * It does not yet have full test coverage.
-* It has limited documentation.
+* It has limited `documentation`_.
 
 Contributing
 ------------
 
 Flask-HipPocket is actively accepting `patches`_ and `feedback`_ at its `GitHub repository`_.
 
+Links
+-----
+
+* `repository`_
+* `documentation`_
+* `development version`_
 
 .. _Flask: http://flask.pocoo.org
 .. _Flask's documentation: http://flask.pocoo.org/docs/patterns/lazyloading/
-.. _GitHub repository: https://github.com/svieira/HipPocket
-.. _patches: https://github.com/svieira/HipPocket/pulls
-.. _feedback: https://github.com/svieira/HipPocket/issues
+.. _repository: https://github.com/svieira/Flask-HipPocket
+.. _GitHub repository: repository_
+.. _patches: https://github.com/svieira/Flask-HipPocket/pulls
+.. _feedback: https://github.com/svieira/Flask-HipPocket/issues
+.. _documentation: http://flask-hippocket.readthedocs.org/en/latest/
+.. _development version: http://github.com/svieira/Flask-HipPocket/zipball/master#egg=Flask-HipPocket-dev
