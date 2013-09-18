@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+    flask.ext.hippocket.tasks
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2013 by Sean Vieira.
+    :license: MIT, see LICENSE for more details.
+"""
+
 from flask import Blueprint, Markup, request, render_template
 from itertools import chain
 from os import path
@@ -58,6 +67,7 @@ def autoload(app, apps_package="apps", module_name="routes", blueprint_name="rou
 
 
 def setup_errors(app, error_template="errors.html"):
+    """Add a handler for each of the available HTTP error responses."""
     def error_handler(error):
         if isinstance(error, HTTPException):
             description = error.get_description(request.environ)

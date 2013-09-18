@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+"""
+    flask.ext.hippocket.pocket
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2013 by Sean Vieira.
+    :license: MIT, see LICENSE for more details.
+"""
+
 from functools import wraps
 from werkzeug import import_string, cached_property
 
@@ -9,22 +18,23 @@ __all__ = ("HipPocket", "LateLoader", "Mapper")
 class HipPocket(object):
     """A wrapper around Flask to help make managing complex applications easier.
 
-    Why not use Flask's ``flask.Flask.before_first_request`` decorator? Because functions
+    Why not use Flask's :meth:`~flask.Flask.before_first_request` decorator? Because functions
     registered via that decorator are run on the first request (as opposed to *before* it).
 
-    This extension fills the gap between ``flask.ext.script`` (Flask-Script) and
-    ``flask.Flask.before_first_request``.  It is for attaching functionality that needs
+    This extension fills the gap between Flask-Script and
+    :meth:`~flask.Flask.before_first_request`.  It is for attaching functionality that needs
     to be run on the application itself (as opposed to Flask-Script which is used to
     run jobs *with* the application) but which might be too intensive to run in response
     to the first request.
 
-    Alternately; because a flask is always better when you have something to carry it in."""
+    Alternately, because a flask is always better when you have something to carry it in.
+    """
 
     def __init__(self, app=None, tasks=None):
-        """
-        :param app: A `flask.Flask` instance.  If none is provided the :meth: init_app  method may be called later
-        to initialize the `Flask` instance.
-        :param tasks: An iterable of callable objects. Each callable will be passed the app in turn.
+        """:arg app: A :class:`~flask.Flask` instance.  If none is provided the :meth:`HipPocket.init_app`  method may be called later
+        to initialize the Flask instance.
+
+        :arg tasks: An iterable of callable objects. Each callable will be passed the app in turn.
         """
 
         self.tasks = tasks if tasks is not None else [autoload, setup_errors]
@@ -32,7 +42,7 @@ class HipPocket(object):
             self.init_app(app)
 
     def init_app(self, app):
-        """Runs each of the tasks added via the `task` decorator."""
+        """Runs each of the tasks added via the :meth:`task` decorator."""
 
         for task in self.tasks:
             task(app)
@@ -42,9 +52,12 @@ class HipPocket(object):
 
         All tasks must take the initialized app as their first argument.
         They can take any other arguments at all - these arguments must be provided to the
-        `@task` decorator during decoration.
+        :meth:`task` decorator during decoration.
 
         Examples::
+
+            from flask import Flask
+            from flask.ext.hippocket import HipPocket
 
             hip_pocket = HipPocket()
 
@@ -60,20 +73,21 @@ class HipPocket(object):
 
             hip_pocket.init_app(app)
 
-        See `tasks.py` for some examples tasks.
+        .. seealso:: :mod:`tasks` 
 
-        NOTE: The task decorator does not handle single callable arguments. If you need
-        to pass single callables pass it as a keyword argument.
+        .. note::
+            The task decorator does not handle single callable arguments. If you need
+            to pass single callables pass it as a keyword argument::
 
-            # This will fail
-            @hip_pocket.task(lambda x: x*2)
-            def schedule_doubles(app, manager):
-                # Have the manager schedule something.
+                # This will fail
+                @hip_pocket.task(lambda x: x*2)
+                def schedule_doubles(app, manager):
+                    # Have the manager schedule something.
 
-            # This will work as anticipated
-            @hip_pocket.task(butler=lambda garment: garment.add_pocket_squares()):
-            def add_pocket_squares(app, butler):
-                # Add pocket squares to the appropriate garments.
+                # This will work as anticipated
+                @hip_pocket.task(butler=lambda garment: garment.add_pocket_squares()):
+                def add_pocket_squares(app, butler):
+                    # Add pocket squares to the appropriate garments.
         """
         def decorator(f):
             @wraps(f)
@@ -112,20 +126,20 @@ class LateLoader(object):
 
 
 class Mapper(object):
-    """Provides a convenience wrapper around `LateLoader`.
+    """Provides a convenience wrapper around :py:class:`LateLoader`.
 
     It is designed to be used as follows::
 
         from flask import Blueprint
-        from hip_pocket import Mapper
+        from flask.ext.hippocket import Mapper
 
         routes = Blueprint("my_blueprint", __name__, url_prefix="/my-blueprint")
         mapper = Mapper(routes, "apps_package.my_app")
 
         mapper.add_url_rule("/", "my_module.my_endpoint")
 
-    `apps_package.my_app.my_module.my_endpoint` will be imported
-    when the URL `/my-blueprint/` is hit for the first time.
+    ``apps_package.my_app.my_module.my_endpoint`` will be imported
+    when the URL ``/my-blueprint/`` is hit for the first time.
     This import will be cached in order to ensure that
     subsequent requests to this url will **not** result in additional imports."""
     def __init__(self, blueprint, base_import_name=None, **url_defaults):
