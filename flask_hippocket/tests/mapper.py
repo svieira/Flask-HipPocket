@@ -30,19 +30,19 @@ class MapperAppTests(unittest.TestCase):
         self.mapper.add_url_rule("/", "mapper_index")
         with self.app.test_client() as tc:
             rv = tc.get("/")
-            self.assertTrue("Mapper Index Page" in rv.data)
+            self.assertTrue(u"Mapper Index Page" in rv.data.decode("utf-8"))
 
     def test_overriding_endpoint(self):
         self.mapper.add_url_rule("/", "overridden_endpoint", endpoint="endpoint_name")
         with self.app.test_client() as tc:
             rv = tc.get("/")
-            self.assertTrue("The url for url_for('endpoint_name') is /" in rv.data)
+            self.assertTrue(u"The url for url_for('endpoint_name') is /" in rv.data.decode("utf-8"))
 
     def test_url_kwarg_forwarding(self):
         self.mapper.add_url_rule("/", "post_only", methods=["POST"])
         with self.app.test_client() as tc:
             self.assertTrue("405" in tc.get("/").status)
-            self.assertTrue("Only accessible via POST" in tc.post("/").data)
+            self.assertTrue(u"Only accessible via POST" in tc.post("/").data.decode("utf-8"))
 
 
 def suite():
