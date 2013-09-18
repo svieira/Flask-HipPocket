@@ -150,6 +150,7 @@ class Mapper(object):
             else blueprint.import_name
 
     def add_url_rule(self, url, import_name, **url_kwargs):
+        """Add a URL to the wrapped :class:`~flask.Flask` or :class:`~flask.Blueprint`'s URL map."""
 
         import_path = u".".join([self.base_import_name, import_name])
         view = LateLoader(import_path)
@@ -159,3 +160,6 @@ class Mapper(object):
         url_kwargs = url_defaults
 
         self.blueprint.add_url_rule(url, view_func=view, **url_kwargs)
+
+    #: :meth:`add` is an alias for :meth:`add_url_rule`.
+    add = add_url_rule
