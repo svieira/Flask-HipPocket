@@ -14,7 +14,7 @@ setup(
     name="Flask-HipPocket",
     description="A wrapper around Flask to ease the development of larger applications",
     long_description=load("README.rst"),
-    version="0.2.0b",
+    version="0.2.0b1",
     packages=find_packages(),
     url="https://github.com/svieira/Flask-HipPocket",
     author="Sean Vieira",
