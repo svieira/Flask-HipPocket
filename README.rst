@@ -10,6 +10,10 @@ Flask-HipPocket
         :target: https://travis-ci.org/svieira/Flask-HipPocket
         :alt: Build Status (via Travis-CI)
         
+.. image:: https://requires.io/github/svieira/Flask-HipPocket/requirements.png?branch=master
+        :target: https://requires.io/github/svieira/Flask-HipPocket/requirements/?branch=master
+        :alt: Requirements Status
+        
 ----
 
 .. epigraph::
