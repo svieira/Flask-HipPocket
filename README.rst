@@ -47,7 +47,7 @@ Can I use it?
 
 It depends on your requirements. Some things to consider:
 
-* It is currently alpha software.
+* It is currently late-alpha software.
 * It is licenced under the MIT licence. 
 * It does not yet have full test coverage.
 * It has limited `documentation`_.
